@@ -1,9 +1,74 @@
-import './charInfo.scss';
-import thor from '../../resources/img/thor.jpeg';
+import { Component } from 'react';
 
-const CharInfo = () => {
+import Spinner from '../spinner/Spinner';
+import ErrorMessgae from '../errorMessage/ErrorMessage';
+import Skeleton from '../skeleton/Skeleton'
+import MarvelService from '../../services/MarvelService';
+
+import './charInfo.scss';
+
+
+class CharInfo extends Component {
+    state = {
+        char: {},
+        loading: false,
+        error: false,
+    }
+
+    marvelService = new MarvelService();
+
+    componentDidMount() {
+        this.updateChar();
+    }
+
+    updateChar = () => {
+        const {charId} = this.props;
+        if (!charId) {
+            return;
+        }
+
+        this.onCharLoading();
+        this.marvelService
+            .getCharacter(charId)
+            .then(this.onCharLoaded)
+            .catch(this.onError);
+    }
+
+    onCharLoaded = (char) => {
+        this.setState({char, loading: false})
+    }
+
+    onCharLoading = () => {
+        this.setState({
+            loading: true
+        })
+    }
+
+    onError = () => {
+        this.setState({loading: false, error: true})
+    }
+
+    render() {
+        const {char, loading, error} = this.state;
+
+        const errorMessage = error ? <ErrorMessgae/> : null;
+        const spinner = loading ? <Spinner/> : null;
+        const content = !(loading || error) ? <View char={char}/> : null;
+
+        return (
+            <div className="char__info">
+                {errorMessage}
+                {spinner}
+                {content}
+                {/* 17 минута */}
+            </div>
+        )
+    }
+}
+
+const View = ({charId}) => {
     return (
-        <div className="char__info">
+        <>
             <div className="char__basics">
                 <img src={thor} alt="abyss"/>
                 <div>
@@ -54,7 +119,7 @@ const CharInfo = () => {
                     Avengers (1996) #1
                 </li>
             </ul>
-        </div>
+        </>
     )
 }
 
