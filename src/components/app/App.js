@@ -1,23 +1,20 @@
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom/cjs/react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import { MainPage, ComicsPage } from "../pages";
+
+import { MainPage, ComicsPage, Page404 } from "../pages";
 import AppHeader from "../appHeader/AppHeader";
 
 const App = () => {
-
     return (
         <Router>
             <div className="app">
                 <AppHeader/>
                 <main>
-                    <Switch>
-                        <Route exact path='/'>
-                            <MainPage/>
-                        </Route>
-                        <Route exact path='/comics'>
-                            <ComicsPage/>
-                        </Route>
-                    </Switch>
+                    <Routes>
+                        <Route exact path='/' element={<MainPage/>}/>
+                        <Route exact path='/comics' element={<ComicsPage/>}/>
+                        <Route exact path='*' element={<Page404/>}/>
+                    </Routes>
                 </main>
             </div>
         </Router>
