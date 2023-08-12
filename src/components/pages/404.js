@@ -1,12 +1,13 @@
-import ErrorMessgae from "../errorMessage/ErrorMessage";
+import ErrorMessage from "../errorMessage/ErrorMessage";
 import { Link } from "react-router-dom";
 
 const Page404 = () => {
+
     return (
         <div className="app__title" style={{'textAlign': 'center'}}>
-            <ErrorMessgae/>
+            <ErrorMessage/>
             <p>Page doesn't Exist!</p>
-            <Link to='/'><span>Back to main page</span></Link>
+            <Link to="/"><span>Back to main page</span></Link>
         </div>
     )
 }
