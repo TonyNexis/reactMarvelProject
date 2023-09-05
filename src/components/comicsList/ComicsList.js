@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import {useState, useEffect} from 'react';
+=======
+import { useState, useEffect } from 'react';
+>>>>>>> b23104cbed82785127fb5283a7bf2af588747d0b
 import { Link } from 'react-router-dom';
 
 import useMarvelService from '../../services/MarvelService';
@@ -40,6 +44,7 @@ const ComicsList = () => {
     function renderItems (arr) {
         const items = arr.map((item, i) => {
             return (
+<<<<<<< HEAD
                 <li className="comics__item" key={i}>
                     <Link to={`/comics/${item.id}`}>
                         <img src={item.thumbnail} alt={item.title} className="comics__item-img"/>
@@ -47,6 +52,18 @@ const ComicsList = () => {
                         <div className="comics__item-price">{item.price}</div>
                     </Link>
                 </li>
+=======
+                <li className="comics__item"
+                tabIndex={0}
+                key={i}
+                >
+                <Link to={`/comics/${item.id}`}>
+                    <img src={item.thumbnail} alt={item.title} className="comics__item-img"/>
+                    <div className="comics__item-name">{item.title}</div>
+                    <div className="comics__item-price">{item.price}</div>
+                </Link>
+            </li>
+>>>>>>> b23104cbed82785127fb5283a7bf2af588747d0b
             )
         })
 

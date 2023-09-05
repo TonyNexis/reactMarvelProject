@@ -2,7 +2,11 @@ import {lazy, Suspense} from 'react';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 
+<<<<<<< HEAD
 // import { MainPage, ComicsPage, Page404 } from "../pages";
+=======
+import { MainPage, ComicsPage, Page404, SingleComicPage } from "../pages";
+>>>>>>> b23104cbed82785127fb5283a7bf2af588747d0b
 import AppHeader from "../appHeader/AppHeader";
 import Spinner from '../spinner/Spinner';
 
@@ -21,11 +25,18 @@ const App = () => {
                 <main>
                     <Suspense fallback={<Spinner/>}>
                     <Routes>
+<<<<<<< HEAD
                         <Route exact path='/' element={<MainPage/>}/>
                         <Route exact path='/comics' element={<ComicsPage/>}/>
                         <Route path="/comics/:id" element={<SinglePage Component={SingleComicLayout} dataType="comic" />} />
                         <Route path="/characters/:id" element={<SinglePage Component={SingleCharacterLayout} dataType="character" />} />
                         <Route exact path='*' element={<Page404/>}/>
+=======
+                        <Route end path='/' element={<MainPage/>}/>
+                        <Route end path='/comics' element={<ComicsPage/>}/>
+                        <Route end path='/comics/:comicId' element={<SingleComicPage/>}/>
+                        <Route end path='*' element={<Page404/>}/>
+>>>>>>> b23104cbed82785127fb5283a7bf2af588747d0b
                     </Routes>
                     </Suspense>
                 </main>
